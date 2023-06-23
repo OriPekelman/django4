@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dsfr',
     'hello',
 ]
 
@@ -61,7 +62,10 @@ ROOT_URLCONF = 'myapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "dsfr/templates"),
+            os.path.join(BASE_DIR, "templates"),
+	],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'dsfr.context_processors.site_config',
             ],
         },
     },
@@ -177,3 +182,4 @@ if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
                 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
             }
         }
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
